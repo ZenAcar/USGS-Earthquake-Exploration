@@ -128,7 +128,7 @@ function buildUrl() {
         domain = "earthquake.usgs.gov",
         endpoint = "/fdsnws/event/1/query",
         format = "geojson",
-        starttime = "2020-05-23",
+        starttime = "2020-05-26",
         endtime = "2020-05-31",
         maxLon = 180.0,
         minLon = -180.0,
