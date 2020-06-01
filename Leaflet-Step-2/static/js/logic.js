@@ -25,15 +25,22 @@ function createLegend() {
     return legend;
 }
 
+function zoomToFeature(e) {
+    map.fitBounds(e.target.getBounds());
+}
+
 function createFeatures(earthquakeData, boundaryData) {
     // Define a function we want to run once for each feature in the features array
     // Give each feature a popup describing the place and time of the earthquake
     function onEachFeature(feature, layer) {
         layer.bindPopup("<h3>" + feature.properties.place +
-            "</h3><hr><p>" + new Date(feature.properties.time) +
-            "</p><hr>Magnitude:<b>" + feature.properties.mag +
-            "</b><hr>Tsunami:<b>" + feature.properties.tsunami + "</b>"
-        )
+                "</h3><hr><p>" + new Date(feature.properties.time) +
+                "</p><hr>Magnitude:<b>" + feature.properties.mag +
+                "</b><hr>Tsunami:<b>" + feature.properties.tsunami + "</b>"
+            )
+            .on({
+                click: zoomToFeature
+            });
     }
 
     // Create a GeoJSON layer containing the features array on the earthquakeData object
