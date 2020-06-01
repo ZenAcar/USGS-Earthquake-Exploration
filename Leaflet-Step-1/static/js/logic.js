@@ -1,8 +1,8 @@
 function getColor(d) {
-    return d > 5 ? '#E64A19' :
-        d > 4 ? '#EF6C00' :
-        d > 3 ? '#FFA000' :
-        d > 2 ? '#FFEB3B' :
+    return d > 5 ? 'red' :
+        d > 4 ? '#E64A19' :
+        d > 3 ? '#EF6C00' :
+        d > 2 ? '#FFA000' :
         d > 1 ? '#FFF176' :
         '#81C784';
 }
