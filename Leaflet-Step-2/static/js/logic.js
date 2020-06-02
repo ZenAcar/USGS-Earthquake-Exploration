@@ -24,7 +24,7 @@ function createLegend() {
     };
     return legend;
 }
-
+// Define a click listener that zooms
 function zoomToFeature(e) {
     map.fitBounds(e.target.getBounds());
 }
@@ -135,7 +135,7 @@ function buildUrl() {
         domain = "earthquake.usgs.gov",
         endpoint = "/fdsnws/event/1/query",
         format = "geojson",
-        starttime = "2020-05-23",
+        starttime = "2020-05-26",
         endtime = "2020-05-31",
         maxLon = 180.0,
         minLon = -180.0,
@@ -147,9 +147,9 @@ function buildUrl() {
 
 (async function() {
     const earthquakeURL = buildUrl();
-    // const earthquakeURL = "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/2.5_week.geojson";
+    // const earthquakeURL = "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_week.geojson";
     const quakeData = await d3.json(earthquakeURL);
-    const boundaryURL = "https://raw.githubusercontent.com/fraxen/tectonicplates/master/GeoJSON/PB2002_plates.json";
+    const boundaryURL = "https://raw.githubusercontent.com/fraxen/tectonicplates/master/GeoJSON/PB2002_boundaries.json";
     const boundaryData = await d3.json(boundaryURL);
 
     // Once we get a response, send the data.features object to the createFeatures function

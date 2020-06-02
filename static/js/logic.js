@@ -30,6 +30,20 @@ function zoomToFeature(e) {
 }
 
 function createFeatures(earthquakeData, boundaryData) {
+
+    // function createMarker(feature) {
+
+    //     var markers = {
+    //         radius: feature.properties.mag * 3,
+    //         color: "black",
+    //         fillOpacity: 0.6,
+    //         weight: 1,
+    //         fillColor: getColor(feature.properties.mag),
+    //     }
+    //     return markers
+    // }
+
+
     // Define a function we want to run once for each feature in the features array
     // Give each feature a popup describing the place and time of the earthquake
     function onEachFeature(feature, layer) {
@@ -42,6 +56,8 @@ function createFeatures(earthquakeData, boundaryData) {
                 click: zoomToFeature
             });
     }
+
+
 
     // Create a GeoJSON layer containing the features array on the earthquakeData object
     // Run the onEachFeature function once for each piece of data in the array
@@ -147,9 +163,9 @@ function buildUrl() {
 
 (async function() {
     const earthquakeURL = buildUrl();
-    // const earthquakeURL = "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/2.5_week.geojson";
+    // const earthquakeURL = "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_week.geojson";
     const quakeData = await d3.json(earthquakeURL);
-    const boundaryURL = "https://raw.githubusercontent.com/fraxen/tectonicplates/master/GeoJSON/PB2002_plates.json";
+    const boundaryURL = "https://raw.githubusercontent.com/fraxen/tectonicplates/master/GeoJSON/PB2002_boundaries.json";
     const boundaryData = await d3.json(boundaryURL);
 
     // Once we get a response, send the data.features object to the createFeatures function

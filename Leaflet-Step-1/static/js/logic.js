@@ -25,7 +25,6 @@ function createLegend() {
     return legend;
 }
 
-// Define a click listener that zooms
 function zoomToFeature(e) {
     map.fitBounds(e.target.getBounds());
 }
