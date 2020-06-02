@@ -30,20 +30,6 @@ function zoomToFeature(e) {
 }
 
 function createFeatures(earthquakeData, boundaryData) {
-
-    // function createMarker(feature) {
-
-    //     var markers = {
-    //         radius: feature.properties.mag * 3,
-    //         color: "black",
-    //         fillOpacity: 0.6,
-    //         weight: 1,
-    //         fillColor: getColor(feature.properties.mag),
-    //     }
-    //     return markers
-    // }
-
-
     // Define a function we want to run once for each feature in the features array
     // Give each feature a popup describing the place and time of the earthquake
     function onEachFeature(feature, layer) {
@@ -56,8 +42,6 @@ function createFeatures(earthquakeData, boundaryData) {
                 click: zoomToFeature
             });
     }
-
-
 
     // Create a GeoJSON layer containing the features array on the earthquakeData object
     // Run the onEachFeature function once for each piece of data in the array
