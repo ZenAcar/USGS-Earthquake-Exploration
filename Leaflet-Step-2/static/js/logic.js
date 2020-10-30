@@ -77,25 +77,31 @@ function createFeatures(earthquakeData, boundaryData) {
 function createMap(earthquakes, boundary) {
 
     // Define streetmap, outdoormap and satellitemap layers
-    const streetmap = L.tileLayer("https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}", {
-        attribution: "Map data &copy; <a href=\"https://www.openstreetmap.org/\">OpenStreetMap</a> contributors, <a href=\"https://creativecommons.org/licenses/by-sa/2.0/\">CC-BY-SA</a>, Imagery © <a href=\"https://www.mapbox.com/\">Mapbox</a>",
+    const streetmap = L.tileLayer("https://api.mapbox.com/styles/v1/{id}/tiles/{tileSize}/{z}/{x}/{y}?access_token={accessToken}", {
+        attribution: "Map data &copy; <a href=\"https://www.openstreetmap.org/\">OpenStreetMap</a> contributors," +
+            "<a href=\"https://creativecommons.org/licenses/by-sa/2.0/\">CC-BY-SA</a>," +
+            " Imagery © <a href=\"https://www.mapbox.com/\">Mapbox</a>",
         maxZoom: 18,
-        id: "mapbox.streets",
+        id: "mapbox/light-v10", // https://docs.mapbox.com/api/maps/#static-tiles
         accessToken: API_KEY
     });
 
 
-    const outdoormap = L.tileLayer("https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}", {
-        attribution: "Map data &copy; <a href=\"https://www.openstreetmap.org/\">OpenStreetMap</a> contributors, <a href=\"https://creativecommons.org/licenses/by-sa/2.0/\">CC-BY-SA</a>, Imagery © <a href=\"https://www.mapbox.com/\">Mapbox</a>",
+    const outdoormap = L.tileLayer("https://api.mapbox.com/styles/v1/{id}/tiles/{tileSize}/{z}/{x}/{y}?access_token={accessToken}", {
+        attribution: "Map data &copy; <a href=\"https://www.openstreetmap.org/\">OpenStreetMap</a> contributors," +
+            "<a href=\"https://creativecommons.org/licenses/by-sa/2.0/\">CC-BY-SA</a>," +
+            " Imagery © <a href=\"https://www.mapbox.com/\">Mapbox</a>",
         maxZoom: 18,
-        id: "mapbox.outdoors",
+        id: "mapbox/outdoors-v11", // https://api.mapbox.com/styles/v1/mapbox/outdoors-v11
         accessToken: API_KEY
     });
 
-    const satellitemap = L.tileLayer("https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}", {
-        attribution: "Map data &copy; <a href=\"https://www.openstreetmap.org/\">OpenStreetMap</a> contributors, <a href=\"https://creativecommons.org/licenses/by-sa/2.0/\">CC-BY-SA</a>, Imagery © <a href=\"https://www.mapbox.com/\">Mapbox</a>",
+    const satellitemap = L.tileLayer("https://api.mapbox.com/styles/v1/{id}/tiles/{tileSize}/{z}/{x}/{y}?access_token={accessToken}", {
+        attribution: "Map data &copy; <a href=\"https://www.openstreetmap.org/\">OpenStreetMap</a> contributors," +
+            "<a href=\"https://creativecommons.org/licenses/by-sa/2.0/\">CC-BY-SA</a>," +
+            " Imagery © <a href=\"https://www.mapbox.com/\">Mapbox</a>",
         maxZoom: 18,
-        id: "mapbox.satellite",
+        id: "mapbox/satellite-streets-v11", // https://api.mapbox.com/styles/v1/mapbox/satellite-streets-v11
         accessToken: API_KEY
     });
 
@@ -116,7 +122,7 @@ function createMap(earthquakes, boundary) {
     const myMap = L.map("map", {
         center: [37.09, -95.71],
         zoom: 4,
-        layers: [streetmap, earthquakes]
+        layers: [satellitemap, earthquakes]
     });
 
     // Create a layer control
@@ -130,24 +136,24 @@ function createMap(earthquakes, boundary) {
 }
 
 // Store our API endpoint inside queryUrl
-function buildUrl() {
-    const
-        domain = "earthquake.usgs.gov",
-        endpoint = "/fdsnws/event/1/query",
-        format = "geojson",
-        starttime = "2020-05-26",
-        endtime = "2020-05-31",
-        maxLon = 180.0,
-        minLon = -180.0,
-        maxLat = 90.0,
-        minLat = -90.0;
+// function buildUrl() {
+//     const
+//         domain = "earthquake.usgs.gov",
+//         endpoint = "/fdsnws/event/1/query",
+//         format = "geojson",
+//         starttime = "2020-05-26",
+//         endtime = "2020-05-31",
+//         maxLon = 180.0,
+//         minLon = -180.0,
+//         maxLat = 90.0,
+//         minLat = -90.0;
 
-    return `https://${domain}${endpoint}?format=${format}&starttime=${starttime}&endtime=${endtime}&maxlongitude=${maxLon}&minlongitude=${minLon}&maxlatitude=${maxLat}&minlatitude=${minLat}`;
-}
+//     return `https://${domain}${endpoint}?format=${format}&starttime=${starttime}&endtime=${endtime}&maxlongitude=${maxLon}&minlongitude=${minLon}&maxlatitude=${maxLat}&minlatitude=${minLat}`;
+// }
 
 (async function() {
-    const earthquakeURL = buildUrl();
-    // const earthquakeURL = "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_week.geojson";
+    // const earthquakeURL = buildUrl();
+    const earthquakeURL = "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_week.geojson";
     const quakeData = await d3.json(earthquakeURL);
     const boundaryURL = "https://raw.githubusercontent.com/fraxen/tectonicplates/master/GeoJSON/PB2002_boundaries.json";
     const boundaryData = await d3.json(boundaryURL);
