@@ -4,6 +4,8 @@ A multi-level Leaflet map visualization that plots United States Geological Surv
 
 The live deployed webpage can be found here: [USGS Earthquake Visualization](https://zenacar.github.io/USGS-Earthquake-Visualization/)
 
+![recent-earthquakes.png](images/recent-earthquakes.png)
+
 ### Level 1: Basic Visualization
 
 
