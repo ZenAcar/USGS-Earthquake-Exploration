@@ -2,7 +2,7 @@
 
 A multi-level Leaflet map visualization that plots United States Geological Survey earthquake data, specifically, "All Earthquakes from the Past 7 Days" from the USGS GeoJSON Feed page, based on longitude and latitude.
 
-The live deployed webpage can be found here: [USGS Earthquake Visualization](https://zenacar.github.io/USGS-Earthquake-Visualization/)
+The live deployed webpage can be found here: [USGS Earthquake Exploration](https://zenacar.github.io/USGS-Earthquake-Exploration/)
 
 ![recent-earthquakes.png](images/recent-earthquakes.png)
 
