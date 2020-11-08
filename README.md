@@ -1,4 +1,4 @@
-# USGS Earthquake Visualization
+# USGS Earthquake Exploration
 
 A multi-level Leaflet map visualization that plots United States Geological Survey earthquake data, specifically, "All Earthquakes from the Past 7 Days" from the USGS GeoJSON Feed page, based on longitude and latitude.
 
