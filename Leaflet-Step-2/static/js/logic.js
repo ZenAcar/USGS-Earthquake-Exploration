@@ -1,9 +1,9 @@
 function getColor(d) {
-    return d > 5 ? 'red' :
-        d > 4 ? '#E64A19' :
-        d > 3 ? '#EF6C00' :
-        d > 2 ? '#FFA000' :
-        d > 1 ? '#FFF176' :
+    return d > 7 ? 'red' :
+        d > 6 ? '#E64A19' :
+        d > 5 ? '#EF6C00' :
+        d > 4 ? '#FFA000' :
+        d > 3 ? '#FFF176' :
         '#81C784';
 }
 
@@ -12,7 +12,7 @@ function createLegend() {
     var legend = L.control({ position: 'bottomright' });
     legend.onAdd = function(map) {
         var div = L.DomUtil.create('div', 'info legend'),
-            grades = [0, 1, 2, 3, 4, 5],
+            grades = [0, 3, 4, 5, 6, 7],
             labels = [];
         // loop through our density intervals and generate a label with a colored square for each interval
         for (var i = 0; i < grades.length; i++) {
