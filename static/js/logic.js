@@ -12,7 +12,7 @@ function createLegend() {
     var legend = L.control({ position: 'bottomright' });
     legend.onAdd = function(map) {
         var div = L.DomUtil.create('div', 'info legend'),
-            grades = [0, 1, 2, 3, 4, 5],
+            grades = [0, 3, 4, 5, 6, 7],
             labels = [];
         // loop through our density intervals and generate a label with a colored square for each interval
         for (var i = 0; i < grades.length; i++) {
